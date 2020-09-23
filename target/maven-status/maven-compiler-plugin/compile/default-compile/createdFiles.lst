@@ -1,0 +1,5 @@
+com\oracle\app\services\VendingCoinChange.class
+com\oracle\app\models\UKCoinBank.class
+com\oracle\app\Application.class
+com\oracle\app\services\VendingHarness.class
+com\oracle\app\models\CoinBank.class
