@@ -8,7 +8,7 @@ The crucial differences that make our problem unique is that the set of availabl
 
 ### Dynamic Programming Approach
 
-The UK coin system is a canonical coin system, meaning that a greedy method that picks the largest coins denomination up to the remaining desired amount should produce an optimal minimal number of coins. However, this is assuming we have an infinite supply of coin demoninations, which is not the case in our vending machine problem.
+The UK coin system is a canonical coin system, meaning that a greedy method that picks the largest coins denomination up to the remaining desired amount should produce an optimal minimal number of coins. However, this is assuming we have an infinite supply of coins, which is not the case in our vending machine problem.
 
 The greedy method could be adapted to produce an optimal solution (enumerate all subsets), but this would result in an exponential time complexity. A far more efficient solution would be to use a dynamic programming approach. I adapted the dynamic programming approach for the change-making problem to account for the finite number of coins and the set of coins selected, allowing for a polynomial time complexity.
 
