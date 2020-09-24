@@ -5,7 +5,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit test for vending coin change functionality
+ * Unit tests for vending coin change functionality
  */
 public class VendingTest {
 
@@ -16,6 +16,7 @@ public class VendingTest {
 		vm = new VendingCoinChange();
 	}
 
+ 	// Unit test featuring an valid initiatiation of the coinbank
     @Test
     public void initialiseValidFloat() {
     	Map<Integer, Integer> validFloat = new HashMap<>();
@@ -33,6 +34,7 @@ public class VendingTest {
         assertEquals(vm.getCoinBank(), validFloat);
     }
 
+ 	// Unit test featuring an invalid initiatiation of the coinbank
     @Test
     public void initialiseInvalidFloat() {
     	Map<Integer, Integer> invalidFloat = new HashMap<>();
@@ -50,6 +52,7 @@ public class VendingTest {
         assertNotEquals(vm.getCoinBank(), invalidFloat);
     }
 
+    // Unit test featuring a invalid coin deposits
     @Test
     public void invalidDeposit() {
 
@@ -60,7 +63,7 @@ public class VendingTest {
         assertEquals(vm.getCoinBank(), emptyFloat);
     }
 
-
+    // Unit test featuring a valid coin deposits
     @Test
     public void validDeposit() {
 
@@ -78,6 +81,7 @@ public class VendingTest {
         assertEquals(vm.getCoinBank(), depositFloat);
     }
 
+    // Unit test featuring a valid and optimal get change request
     @Test
     public void optimalCoinsChange() {
     	Map<Integer, Integer> optimalFloat = new HashMap<>();
@@ -96,6 +100,7 @@ public class VendingTest {
         assertEquals(vm.getCoinBank(), expectedFloat);
     }
 
+    // Unit test featuring an invalid get change request
     @Test
     public void invalidCoinsChange() {
     	Map<Integer, Integer> insufficientFloat = new HashMap<>();
@@ -109,9 +114,66 @@ public class VendingTest {
         assertEquals(vm.getCoinBank(), insufficientFloat);
     }
 
-    // @Test
-    // public void shouldAnswerWithTrue() {
+    // Unit test featuring an invalid overwrite of the coinbank
+    @Test
+    public void invalidBankOverwrite() {
+    	Map<Integer, Integer> initialFloat = new HashMap<>();
+    	initialFloat.put(123, 1);
 
-    //     assertEquals(expectedMap, hashMap);
-    // }
+		vm.initialize(initialFloat);
+
+		Map<Integer, Integer> newFloat = new HashMap<>();
+    	newFloat.put(1, 1);
+    	newFloat.put(2, -1);
+    	newFloat.put(3, 1); 
+
+    	vm.initialize(newFloat);
+
+        assertEquals(vm.getCoinBank(), initialFloat);
+    }
+
+    // Unit test featuring a valid overwrite of the coinbank
+    @Test
+    public void validBankOverwrite() {
+    	Map<Integer, Integer> initialFloat = new HashMap<>();
+    	initialFloat.put(123, 1);
+
+		vm.initialize(initialFloat);
+
+		Map<Integer, Integer> newFloat = new HashMap<>();
+    	newFloat.put(1, 1);
+    	newFloat.put(2, 1);
+    	newFloat.put(3, 1); 
+
+    	vm.initialize(newFloat);
+
+        assertEquals(vm.getCoinBank(), newFloat);
+    }
+
+    // Unit test featuring various calls to initialize, deposit and get change
+    @Test
+    public void multipleCalls() {
+    	Map<Integer, Integer> initialFloat = new HashMap<>();
+    	initialFloat.put(123, 1);
+
+		vm.initialize(initialFloat);
+
+		vm.getChange(123);
+		for (int i = 0; i < 10; i++) {
+			vm.depositCoin(3);
+		}
+		for (int i = 0; i < 5; i++) {
+			vm.depositCoin(20);
+		}
+		vm.depositCoin(100);
+		vm.getChange(123);
+
+		Map<Integer, Integer> finalFloat = new HashMap<>();
+		finalFloat.put(3, 9);
+		finalFloat.put(20, 4);
+		finalFloat.put(100, 0);
+		finalFloat.put(123, 0);
+
+        assertEquals(vm.getCoinBank(), finalFloat);
+    }    
 }
