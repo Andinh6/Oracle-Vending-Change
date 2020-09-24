@@ -1,3 +1,5 @@
+import vendingmachine.*;
+
 import java.util.*;
 
 /**
