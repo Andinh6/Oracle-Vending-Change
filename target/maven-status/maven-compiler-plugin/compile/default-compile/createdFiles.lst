@@ -1,0 +1,5 @@
+vendingmachine\VendingCoinChange.class
+exceptions\InsufficientCoinsException.class
+vendingmachine\VendingMachine.class
+Application.class
+vendingmachine\VendingCoinChangeAPI.class
