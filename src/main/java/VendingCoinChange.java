@@ -14,6 +14,14 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 	}
 
 	/**
+	 * Returns the coinbank hashmap
+	 * @return A hashmap representation of the coinbank 
+	 */
+	public Map<Integer, Integer> getCoinBank() {
+		return coinBank;
+	}
+
+	/**
 	 * Initialize the vending machine coin bank with an initial float 
 	 * Note: This will overwrite the coinbank
 	 * @param initialFloat A hashmap with key coin demonination and value quantity
@@ -82,7 +90,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 				if (returnedChange[i] > 0) {
 					int denomination = coins[i];
 					coinBank.put(denomination, coinBank.get(denomination) - returnedChange[i]);
-					
+
 					System.out.println(denomination + " x " + returnedChange[i]);
 				}
 			}
@@ -90,14 +98,6 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 		catch (InsufficientCoinsException e) {
 			System.out.println(e);
 		}
-	}
-
-	/**
-	 * Returns the coinbank hashmap
-	 * @return A hashmap representation of the coinbank 
-	 */
-	public Map<Integer, Integer> getCoinBank() {
-		return coinBank;
 	}
 
 	/** Dynamic programming approach for determining coins to sum up to change amount
