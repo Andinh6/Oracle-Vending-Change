@@ -8,6 +8,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 	// Hashmap representation of the coinbank where key is the coin demoniation and value is the coin count
 	private Map<Integer, Integer> coinBank;
 
+	// Constructor
 	public VendingCoinChange() {
 		coinBank = new HashMap<>();
 	}
@@ -106,7 +107,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 	 * @return 2D int array representation of the dp table [i][j] that returns coin count given i = desired amount and j = coin demonination
 	 */
 	private int[][] determineChange(int amount, int[] coins, int[] count) throws InsufficientCoinsException {
-        int[][] coinsMatrix = new int[amount + 1][]; // Dp table to store subproblem solutions
+        int[][] coinsMatrix = new int[amount + 1][]; // dp table to store subproblem solutions
         int[] minCoins = new int[amount + 1]; // Array [k] that returns minimun coin count needed to sum to amount k
 
         // Allocate dp table and set mincoins to max integer value (- 1)
@@ -116,12 +117,13 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
             minCoins[i] = Integer.MAX_VALUE - 1;
         }
 
-        // Iterative dynamic programming
-        for (int i = 0; i < coins.length; i++) { // Iterate through each coin denomination 
-        	for (int j = 0; j < count[i]; j++) { // Iterate up to number of coins available of each coin denomination
-                for (int k = amount; k >= 0; k--) { // Iterate down from desired amount to 0
+        // Iterative dynamic programming 
+        for (int i = 0; i < coins.length; i++) { 
+        	for (int j = 0; j < count[i]; j++) { 
+                for (int k = amount; k >= 0; k--) { 
 
-                    int currentAmount = k + coins[i]; // Construct optimal solution based on optimal solution of subproblems
+                	// Subproblem
+                    int currentAmount = k + coins[i]; 
                     if (currentAmount <= amount && minCoins[currentAmount] > minCoins[k] + 1) { 
                         minCoins[currentAmount] = minCoins[k] + 1; 
 

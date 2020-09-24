@@ -15,7 +15,7 @@ public class VendingMachine {
 
 		boolean running = true;
 		while (running) {
-			System.out.println("\nChoose your option:");
+			System.out.println("\nChoose your option (Enter a number)");
 			System.out.println("[0] Initialize");
 			System.out.println("[1] View Coins");
 			System.out.println("[2] Deposit Coin");
@@ -62,7 +62,7 @@ public class VendingMachine {
 		            
 		    for (int i = 0; i < strings.length; i++) {
 		    	int coin = Integer.parseInt(strings[i]);
-		    	
+
     			if (floatInput.containsKey(coin)) {
 					floatInput.put(coin, floatInput.get(coin) + 1);
 				}

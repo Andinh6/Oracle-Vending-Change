@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.*;
 
 import java.util.*;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +15,12 @@ public class VendingTest {
 	@BeforeEach
 	public void setUp() {
 		vm = new VendingCoinChange();
+
+		// For hiding System.out.print calls in mvn output
+		System.setOut(new PrintStream(new OutputStream() {
+			public void write(int b) {
+			}
+		}));
 	}
 
  	// Unit test featuring an valid initiatiation of the coinbank
