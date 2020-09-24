@@ -42,10 +42,10 @@ Calculate the minimum number of counts to sum up to a total amount, and remove t
 
 ## Decisions and Justifications
 
-* The coinbank is represented as a hashmap with integer pairs for storing coin demonination and its corresponding count. Hashmaps allowed for efficient lookup and modification of particular coin demoninations. A coin object could've also been used instead of integers but this wasn't absolutely necessary.
-* The coinbank implementation allows for the representation of arbitrary coin demoninations, but it could be adapted to enforce aa strict set of coin demoninations e.g. 1p, 2p, 5p, 10p, 20p, 50p, £1 and £2 coins only
+* The coinbank is represented as a hashmap with integer pairs for storing coin demonination and its corresponding count. Hashmaps allowed for efficient lookup and modification of particular coin demoninations. A coin object could have also been used instead of integers but was deemed unnecessary.
+* The coinbank implementation allows for the representation of arbitrary coin demoninations, but it could be adapted to enforce a strict set of coin demoninations, e.g. 1p, 2p, 5p, 10p, 20p, 50p, £1 and £2 coins only, using an enum for example
 * The coinbank hashmap is converted to two arrays during change calculation due to the overhead of iterating through a hashmap repeatedly during the iterative dynamic programming execution. This allowed for slightly better performance and more intuitive code.
-* Used an Exception for when there is insufficient coins for a desired change amount, which is caught in an try/catch block. An alternate option would be an if function to check for a null return but I felt the former code looked cleaner. 
-* The API features minimal features (initialise, deposit, and get change) to ensure modularity with the rest of the imaginary "vending machine". It avoids handling aspects of a vending machine that would probably be better served in different components beyond this API. 
+* Included an InsufficientCoinsException for when there is insufficient coins for a desired change amount, which is caught in an try/catch block. An alternate option would be an if function to check for a null return. 
+* The API features minimal and concise functions (initialise, deposit, and get change) to ensure modularity with the rest of the imaginary "vending machine". It avoids handling aspects of a vending machine that would probably be better served in different components beyond this API. 
 * The API contains some print functions mainly to provide clarify for the testing harness.
 * A set of JUnit tests are included 

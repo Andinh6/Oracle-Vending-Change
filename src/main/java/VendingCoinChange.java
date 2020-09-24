@@ -5,7 +5,7 @@ import java.util.*;
  */
 public class VendingCoinChange implements VendingCoinChangeAPI {
 
-	// Hashmap representation of the coinbank where key is the coin demoniation and value is the coin count
+	// Hashmap representation of the coinbank where key is the coin denomination and value is the coin count
 	private Map<Integer, Integer> coinBank;
 
 	// Constructor
@@ -15,7 +15,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 
 	/**
 	 * Initialize the vending machine coin bank with an initial float 
-	 * Note: This will replace the previous coinbank contents
+	 * Note: This will overwrite the coinbank
 	 * @param initialFloat A hashmap with key coin demonination and value quantity
 	 */
 	@Override
@@ -32,7 +32,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 
 	/**
 	 * Deposit an individual coin into vending machine coinbank
-	 * @param coin An integer representing coin demonination
+	 * @param coin An integer representing coin denomination
 	 */
 	@Override
 	public void depositCoin(int coin) {
@@ -52,7 +52,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 	}
 
 	/**
-	 * Calculate coins needed to sum to desired amount and remove from coinbank
+	 * Calculate minimum number of coins needed to sum to desired amount and remove them from coinbank
 	 * @param changeAmount Total amount of the desired change
 	 */
 	@Override
@@ -82,6 +82,7 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 				if (returnedChange[i] > 0) {
 					int denomination = coins[i];
 					coinBank.put(denomination, coinBank.get(denomination) - returnedChange[i]);
+					
 					System.out.println(denomination + " x " + returnedChange[i]);
 				}
 			}
