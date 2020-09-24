@@ -2,7 +2,7 @@
 
 ## Background
 
-The main problem in our vending machine coin tracking API is similar to the well known change-making problem. The most common variation of this problem entails finding the minimun number of coins (of some demoninations) that add up to a given value, assuming the set of available coins is infinite. We can assume that for our problem, we also want to return the minimal number of change too for the benefit of the customer. After all, good vending machines give back change, but the best vending machines give change with the minimal number of coins.
+The main problem in our vending machine coin tracking API is similar to the well known change-making problem. The most common variation of this problem entails finding the minimum number of coins (of some demoninations) that add up to a given value, assuming the set of available coins is infinite. We can assume that for our problem, we also want to return the minimal number of change too for the benefit of the customer. After all, good vending machines give back change, but the best vending machines give change with the minimal number of coins.
 
 The crucial differences that make our problem unique is that the set of available coins is not infinite, it is defined by the coins stored in the vending machine, and that we are also trying to find out the set of coins returned as change, not just the number of coins.
 
@@ -38,7 +38,7 @@ Deposit an individual coin into the vending machine's coinbank. Coins with negat
 ### GetChange
 `public void getChange(int changeAmount)` 
 
-Calculate the minimun number of counts to sum up to a total amount, and remove the coins from the vending machine's coinbank. The performance for a typical usecase of the vending machine using dynamic programming is slower than a non-minimal coin count greedy approach, but ensures an optimal solution. However, a minimal coin count greedy approach would be significantly slower.
+Calculate the minimum number of counts to sum up to a total amount, and remove the coins from the vending machine's coinbank. The performance for a typical usecase of the vending machine using dynamic programming is slower than a non-minimal coin count greedy approach, but ensures an optimal solution. However, a minimal coin count greedy approach would be significantly slower.
 
 ## Decisions and Justifications
 
