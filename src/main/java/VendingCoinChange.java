@@ -66,9 +66,9 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 		int[] count = new int[coinBank.size()];
 		int index = 0;
 		for (Map.Entry<Integer, Integer> coin : coinBank.entrySet()) {
-		    coins[index] = coin.getKey();
-		    count[index] = coin.getValue();
-		    index++;
+			coins[index] = coin.getKey();
+			count[index] = coin.getValue();
+			index++;
 		}
 
 		// Calculate dp table for determining change
@@ -107,39 +107,39 @@ public class VendingCoinChange implements VendingCoinChangeAPI {
 	 * @return 2D int array representation of the dp table [i][j] that returns coin count given i = desired amount and j = coin demonination
 	 */
 	private int[][] determineChange(int amount, int[] coins, int[] count) throws InsufficientCoinsException {
-        int[][] coinsMatrix = new int[amount + 1][]; // dp table to store subproblem solutions
-        int[] minCoins = new int[amount + 1]; // Array [k] that returns minimun coin count needed to sum to amount k
+		int[][] coinsMatrix = new int[amount + 1][]; // dp table to store subproblem solutions
+		int[] minCoins = new int[amount + 1]; // Array [k] that returns minimum coin count needed to sum to amount k
 
-        // Allocate dp table and set mincoins to max integer value (- 1)
-        coinsMatrix[0] = new int[coins.length]; 
-        for (int i = 1; i <= amount; i++) {
-            coinsMatrix[i] = new int[coins.length];
-            minCoins[i] = Integer.MAX_VALUE - 1;
-        }
+		// Allocate dp table and set mincoins to max integer value (- 1)
+		coinsMatrix[0] = new int[coins.length]; 
+		for (int i = 1; i <= amount; i++) {
+		    coinsMatrix[i] = new int[coins.length];
+		    minCoins[i] = Integer.MAX_VALUE - 1;
+		}
 
-        // Iterative dynamic programming 
-        for (int i = 0; i < coins.length; i++) { 
-        	for (int j = 0; j < count[i]; j++) { 
-                for (int k = amount; k >= 0; k--) { 
+		// Iterative dynamic programming 
+		for (int i = 0; i < coins.length; i++) { 
+			for (int j = 0; j < count[i]; j++) { 
+				for (int k = amount; k >= 0; k--) { 
 
-                	// Subproblem
-                    int currentAmount = k + coins[i]; 
-                    if (currentAmount <= amount && minCoins[currentAmount] > minCoins[k] + 1) { 
-                        minCoins[currentAmount] = minCoins[k] + 1; 
+					// Subproblem
+					int currentAmount = k + coins[i]; 
+					if (currentAmount <= amount && minCoins[currentAmount] > minCoins[k] + 1) { 
+						minCoins[currentAmount] = minCoins[k] + 1; 
 
-                        coinsMatrix[currentAmount] = Arrays.copyOf(coinsMatrix[k], coinsMatrix[k].length); 
-                        coinsMatrix[currentAmount][i] += 1;
-                    }
-                }
-            }
-        }
+						coinsMatrix[currentAmount] = Arrays.copyOf(coinsMatrix[k], coinsMatrix[k].length); 
+						coinsMatrix[currentAmount][i] += 1;
+					}
+				}
+			}
+		}
 
-        // Throws exception if no possible coins to sum amount, else return dp table
-        if (minCoins[amount] == Integer.MAX_VALUE - 1) {
-        	throw new InsufficientCoinsException();
-        }
-        else {
-         	return coinsMatrix;
-        }
+		// Throws exception if no possible coins to sum amount, else return dp table
+		if (minCoins[amount] == Integer.MAX_VALUE - 1) {
+			throw new InsufficientCoinsException();
+		}
+		else {
+		 	return coinsMatrix;
+		}
 	}
 }

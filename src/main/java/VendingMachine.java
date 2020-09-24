@@ -69,7 +69,7 @@ public class VendingMachine {
 				else {
 					floatInput.put(coin, 1);
 				}
-		    }
+			}	
 		}
 		catch (Exception e) {
 			System.out.println("Invalid input, please try again.");
