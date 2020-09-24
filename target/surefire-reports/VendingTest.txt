@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: VendingTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 s - in VendingTest
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.061 s <<< FAILURE! - in VendingTest
+multipleCalls  Time elapsed: 0.008 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <{3=9, 20=5, 100=1, 123=0}> but was: <{3=9, 20=4, 100=0, 123=0}>
+	at VendingTest.multipleCalls(VendingTest.java:186)
+
+optimalCoinsChange  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <{1=999, 50=1, 20=3}> but was: <{1=997, 50=1, 20=0}>
+	at VendingTest.optimalCoinsChange(VendingTest.java:109)
+
